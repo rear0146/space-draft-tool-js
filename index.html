@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="index.css" rel="stylesheet" type="text/css">
+    <title>Space Draft Tool</title>
+</head>
+<body>
+    <div class="section">
+        <h1>メンバー登録</h1>
+        <input type="text" id="member" placeholder="name1,name2,name3"/>
+        <button onclick="getValue()">submit</button>
+        <p id="memberList"></p>
+    </div>
+    <div class="section">
+        <h1>ドラフト</h1>
+        <button onclick="draftPlayer()">draft</button>
+        <ul id="draft"></ul>
+    </div>
+    <div class="section">
+        <h1>ポジション抽選</h1>
+        <button onclick="selectPosition()">next position</button>
+        <div class="positionList">
+            <div>
+                <h3>選択されたポジション</h3>
+                <ul id="selectedPosition"></ul>
+            </div>
+            <div>
+                <h3>残りのポジション</h3>
+                <ul id="position"></ul> 
+            </div>
+        </div>
+    </div>
+    <script>
+        const shuffleArray = (array) => {
+            const cloneArray = [...array]
+            for (let i = cloneArray.length - 1; i >= 0; i--) {
+                let rand = Math.floor(Math.random() * (i + 1))
+                let tmpStorage = cloneArray[i]
+                cloneArray[i] = cloneArray[rand]
+                cloneArray[rand] = tmpStorage
+            }
+            return cloneArray
+        }
+
+        let member = []
+        let positionListAll = ['GK','AC','CF','FB','FB','CB','CB','IH','IH','WG','WG','Free','Free','Free','Free','Free']
+        let submitButton = document.getElementById('memberSubmit');
+        let memberList = document.getElementById('memberList');
+        let draft = document.getElementById('draft');
+        let selectedPosition = document.getElementById('selectedPosition');
+        let position = document.getElementById('position');
+        positionListAll.forEach((value, index)=>{position.innerHTML+="<li>"+value+"</li>"})
+        
+        function getValue() {
+            member = document.getElementById('member').value.split(',');
+            // memberList.textContent = member
+            draft.innerHTML='<li>例</li>'
+            member.forEach((value, index)=>{draft.innerHTML+="<li>"+(index+1)+"位 "+value+"</li>"})
+        }
+        function draftPlayer() {
+            if(!member.length){
+                draft.innerHTML='<li>メンバーを登録してください</li>'
+                return
+            }
+            var m = shuffleArray(member)
+            draft.innerHTML=''
+            m.forEach((value, index)=>{draft.innerHTML+="<li>"+(index+1)+"位 "+value+"</li>"})
+        }
+        function selectPosition() {
+            if(!positionListAll.length) return
+            var nextPositionIndex = Math.floor(Math.random() * positionListAll.length)
+            selectedPosition.innerHTML += "<li>"+(17-positionListAll.length)+"人目 "+positionListAll[nextPositionIndex]+"</li>"
+
+            positionListAll = positionListAll.filter((e,index) => index !== nextPositionIndex)
+            position.innerHTML =''
+            positionListAll.forEach((value, index)=>{position.innerHTML+="<li>"+value+"</li>"})
+        }
+    </script>
+</body>
+</html>

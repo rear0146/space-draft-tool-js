@@ -1,0 +1,45 @@
+body {
+    background-color: #ddd;
+}
+
+ul {
+    list-style: none;
+}
+
+h1 {
+    font-size: 20px;
+    color: #333;
+}
+
+h3 {
+    font-size: 16px;
+    color: #333;
+}
+
+button {
+    color: #555;
+    background-color: #FFF;
+    border: 1px solid #999;
+    border-radius: 16px;
+    padding: 4px 16px;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.section {
+    width: 100%;
+    max-width: 700px;
+    background-color: #FFF;
+    margin: 8px auto;
+    padding: 20px 40px;
+    border-radius: 8px;
+}
+
+.positionList {
+    display: flex;
+    gap: 20px;
+}
+
+.positionList div{
+    width: 200px;
+    height: 480px;
+}
