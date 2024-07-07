@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="index.css" rel="stylesheet" type="text/css">
+    <script src="timer.js"></script>
     <title>Space Draft Tool</title>
 </head>
 <body>
     <div class="section">
-        <h1>メンバー登録</h1>
-        <input type="text" id="member" placeholder="name1,name2,name3"/>
-        <button onclick="getValue()">submit</button>
-        <p id="memberList"></p>
+        <details>
+            <summary>メンバー登録</summary>
+            <input type="text" id="member" placeholder="name1,name2,name3"/>
+            <button onclick="getValue()">submit</button>
+            <p id="memberList"></p>
+        </details>
     </div>
     <div class="section">
         <h1>ドラフト</h1>
@@ -31,6 +34,15 @@
                 <ul id="position"></ul> 
             </div>
         </div>
+    </div>
+    <div class="section">
+        <div id="timerApp">
+            <p id="default" class="timer">03：00</p>
+            <div class="timerButtons">
+                <button id="start">start</button>
+                <button id="stop">stop</button>
+                <button id="reset">reset</button>
+            </div>
     </div>
     <script>
         const shuffleArray = (array) => {
