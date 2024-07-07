@@ -41,6 +41,7 @@ function count_down() {
 
   // datauri scheme 形式にして Audio オブジェクトを生成
   var sound = new Audio("data:audio/wav;base64," + base64);
+  sound.volume = 0.05;
   if(count===60||count===10)sound.play();
   if(count===0)count_reset();
 }
